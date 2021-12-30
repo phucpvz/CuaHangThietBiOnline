@@ -1,17 +1,20 @@
 package com.phuphuc.cuahangthietbionline.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.phuphuc.cuahangthietbionline.R;
+import com.phuphuc.cuahangthietbionline.activity.ChiTietSanPhamActivity;
 import com.phuphuc.cuahangthietbionline.model.SanPham;
 import com.squareup.picasso.Picasso;
 
@@ -62,6 +65,16 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ItemHold
             imgHinhAnhSP = itemView.findViewById(R.id.imageviewHinhSanPham);
             txtTenSP = itemView.findViewById(R.id.textviewTenSanPham);
             txtGiaSP = itemView.findViewById(R.id.textviewGiaSanPham);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, ChiTietSanPhamActivity.class);
+                    intent.putExtra("thongtinsanpham", sanPhamList.get(getAdapterPosition()));
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    Toast.makeText(context, sanPhamList.get(getAdapterPosition()).getTenSanPham(), Toast.LENGTH_SHORT).show();
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }

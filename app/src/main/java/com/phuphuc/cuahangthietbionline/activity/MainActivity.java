@@ -1,5 +1,6 @@
 package com.phuphuc.cuahangthietbionline.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -9,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -26,6 +29,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.phuphuc.cuahangthietbionline.R;
 import com.phuphuc.cuahangthietbionline.adapter.LoaiSanPhamAdapter;
 import com.phuphuc.cuahangthietbionline.adapter.SanPhamAdapter;
+import com.phuphuc.cuahangthietbionline.model.GioHang;
 import com.phuphuc.cuahangthietbionline.model.LoaiSanPham;
 import com.phuphuc.cuahangthietbionline.model.SanPham;
 import com.phuphuc.cuahangthietbionline.util.CheckConnection;
@@ -52,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
     List<SanPham> sanPhamList;
     SanPhamAdapter sanPhamAdapter;
 
+    public static List<GioHang> gioHangList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,9 +70,26 @@ public class MainActivity extends AppCompatActivity {
             layDuLieuSanPhamMoiNhat();
             batSuKienClickMenu();
         } else {
-            CheckConnection.showMessage(getApplicationContext(), "Ứng dụng yêu cầu có kết nối Internet!");
+            CheckConnection.showMessage(getApplicationContext(), "Ứng dụng yêu cầu cần có kết nối Internet!");
             finish();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuGioHang:
+                Intent intent = new Intent(getApplicationContext(), GioHangActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void batSuKienClickMenu() {
@@ -241,5 +264,9 @@ public class MainActivity extends AppCompatActivity {
         rcvManHinhChinh.setHasFixedSize(true);
         rcvManHinhChinh.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
         rcvManHinhChinh.setAdapter(sanPhamAdapter);
+
+        if (gioHangList == null) {
+            gioHangList = new ArrayList<>();
+        }
     }
 }

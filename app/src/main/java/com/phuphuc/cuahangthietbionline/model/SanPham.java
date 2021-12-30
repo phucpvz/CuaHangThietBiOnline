@@ -1,6 +1,8 @@
 package com.phuphuc.cuahangthietbionline.model;
 
-public class SanPham {
+import java.io.Serializable;
+
+public class SanPham implements Serializable {
     private int id;
     private String tenSanPham;
     private int giaSanPham;

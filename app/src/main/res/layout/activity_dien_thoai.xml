@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activity.DienThoaiActivity">
-    
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarDienThoai"
-        android:background="#7C5252"
-        app:titleTextColor="#FFFFFF"
-        app:title="Điện thoại"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="#7C5252"
+        app:title="Điện thoại"
+        app:titleTextColor="#FFFFFF" />
+
     <ListView
         android:id="@+id/listviewDienThoai"
         android:layout_width="match_parent"
