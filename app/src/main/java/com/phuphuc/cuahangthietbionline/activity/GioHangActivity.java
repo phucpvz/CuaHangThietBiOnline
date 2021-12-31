@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,6 +36,24 @@ public class GioHangActivity extends AppCompatActivity {
         checkData();
         loadTongTien();
         batSuKienXoaGioHang();
+        batSuKienNhanCacNut();
+    }
+
+    private void batSuKienNhanCacNut() {
+        btnThanhToan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ThongTinKhachHangActivity.class);
+                startActivity(intent);
+            }
+        });
+        btnTiepTucMua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void batSuKienXoaGioHang() {
@@ -52,6 +71,7 @@ public class GioHangActivity extends AppCompatActivity {
                         loadTongTien();
                         if (MainActivity.gioHangList.isEmpty()) {
                             txtThongBao.setVisibility(View.VISIBLE);
+                            btnThanhToan.setVisibility(View.INVISIBLE);
                         }
                     }
                 });
@@ -79,11 +99,13 @@ public class GioHangActivity extends AppCompatActivity {
         if (MainActivity.gioHangList.isEmpty()) {
             gioHangAdapter.notifyDataSetChanged();
             txtThongBao.setVisibility(View.VISIBLE);
+            btnThanhToan.setVisibility(View.INVISIBLE);
             lvGioHang.setVisibility(View.INVISIBLE);
         }
         else {
             gioHangAdapter.notifyDataSetChanged();
             txtThongBao.setVisibility(View.INVISIBLE);
+            btnThanhToan.setVisibility(View.VISIBLE);
             lvGioHang.setVisibility(View.VISIBLE);
         }
     }
